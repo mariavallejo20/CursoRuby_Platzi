@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    volumes:
+      - .:/project
+      - gems:/usr/local/bundle:delegated
+    command: bash -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"
+    ports:
+      - "3000:3000"
+     
+    environment:
+      DATABASE_USERNAME: 'root'
+      DATABASE_PORT: '4306'
+      DATABASE_HOST: 'db'
+   
+volumes:
+  gems: {}
